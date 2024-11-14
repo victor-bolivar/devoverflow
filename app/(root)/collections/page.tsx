@@ -1,8 +1,9 @@
 
 const page = () => {
     return (
-        <div>
+        <div className="h-[3000px]">
             <h1>Collections</h1>
+
         </div>
     )
 }

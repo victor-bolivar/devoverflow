@@ -6,12 +6,12 @@ import { LogOut } from 'lucide-react'
 
 const LeftSidebarDesktop = () => {
     return (
-        <aside className='px-8 relative h-full'>
+        <aside className='sticky top-20 px-8 h-[calc(100vh-5rem)] border'>
             <div>
-                <ul className="flex flex-col gap-4 mt-20">
+                <ul className="flex flex-col gap-4 mt-14">
                     {navLinks.map(item => <li key={item.href}><NavLink key={item.href} item={item} /></li>)}
                 </ul>
-                <div className="absolute bottom-10 left-4 right-4">
+                <div className="absolute mx-6 bottom-10 left-4 right-4">
                     <Button
                         variant="outline"
                         className="w-full justify-start gap-2"
