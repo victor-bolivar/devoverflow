@@ -32,7 +32,7 @@ export default function LeftSidebarMobile() {
                     </SheetTitle>
                 </SheetHeader>
                 <nav className="flex flex-col gap-4 mt-4">
-                    {navLinks.map(item => <NavLink key={item.href} item={item} handleOnClick={() => setOpen(false)} />)}
+                    {navLinks.map(item => <NavLink hideTextOnShrink={false} key={item.href} item={item} handleOnClick={() => setOpen(false)} />)}
                 </nav>
                 <div className="absolute bottom-4 left-4 right-4">
                     <Button

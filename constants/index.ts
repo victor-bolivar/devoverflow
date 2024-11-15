@@ -9,3 +9,6 @@ export const navLinks: TNavLink[] = [
     { href: '/ask', label: 'Ask a Question', icon: { src: '/nav-icons/questions.svg', width: 24, height: 24 } },
 ]
 
+export const ROUTES = {
+    'TAGS': (id: string) => `/tags/${id}`
+}

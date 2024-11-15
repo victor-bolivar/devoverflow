@@ -1,6 +1,6 @@
 import { ChevronRight } from 'lucide-react'
 import TopQuestion from './top-question'
-import PopularTag from './popular-tags'
+import Tag from '../../tag'
 
 const RightSidebar = () => {
     // TODO get questions from DB
@@ -27,7 +27,7 @@ const RightSidebar = () => {
             </section>
             <section className={sectionStyle}>
                 <h3 className={titleStyle}>Popular tags</h3>
-                {popularTags.map(tag => <PopularTag {...tag} />)}
+                {popularTags.map(tag => <Tag {...tag} includeRightArrow={true} />)}
             </section>
 
         </aside >

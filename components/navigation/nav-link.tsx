@@ -7,10 +7,11 @@ import { usePathname } from 'next/navigation'
 
 type NavLinkProps = {
     item: TNavLink,
-    handleOnClick?: () => void
+    handleOnClick?: () => void,
+    hideTextOnShrink?: boolean
 }
 
-const NavLink = ({ item, handleOnClick }: NavLinkProps) => {
+const NavLink = ({ item, handleOnClick, hideTextOnShrink = true }: NavLinkProps) => {
 
     const currentPath = usePathname()
     const selected = item.href === currentPath
@@ -24,7 +25,7 @@ const NavLink = ({ item, handleOnClick }: NavLinkProps) => {
             onClick={handleOnClick}
         >
             <Image {...item.icon} alt={`Icon for ${item.label}`} className={`h-5 w-5 invert dark:invert-0 ${selected && 'invert-0'}`} />
-            <span className='pl-2 max-md:hidden'>{item.label}</span>
+            <span className={`pl-2 ${hideTextOnShrink && 'max-lg:hidden'}`}>{item.label}</span>
         </a>
     )
 }

@@ -6,7 +6,7 @@ import { LogOut } from 'lucide-react'
 
 const LeftSidebarDesktop = () => {
     return (
-        <aside className='sticky top-20 px-8 h-[calc(100vh-5rem)] border'>
+        <aside className='max-md:hidden sticky top-20 px-8 h-[calc(100vh-5rem)] border'>
             <div>
                 <ul className="flex flex-col gap-4 mt-14">
                     {navLinks.map(item => <li key={item.href}><NavLink key={item.href} item={item} /></li>)}
