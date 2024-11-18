@@ -231,7 +231,7 @@ export default async function Page(props: {
             <HomeFilter />
 
             <div className='flex flex-col gap-5 mt-4'>
-                {questions.map(question => <QuestionCard question={question} />)}
+                {questions.map(question => <QuestionCard key={question._id} question={question} />)}
             </div>
         </div>
     )

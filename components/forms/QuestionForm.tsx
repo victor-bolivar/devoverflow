@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { AskAQuestionSchema } from "@/lib/validations"
+import RichTextEditor from '@/components/rich-text-editor'
 
 export function QuestionForm() {
 
@@ -65,8 +66,12 @@ export function QuestionForm() {
                                 Detailed explanation of your problem? <span className="text-orange-strong">*</span>
                             </FormLabel>
                             <FormControl>
-                                <Input className="input" placeholder="" {...field} />
-                                {/* TODO RichTextEditor */}
+
+                                <RichTextEditor editorContent={field.value} onChange={value => {
+                                    console.log(value)
+                                    field.onChange({ target: { value } })
+                                    console.log(field.value)
+                                }} />
 
                             </FormControl>
                             <FormDescription>
