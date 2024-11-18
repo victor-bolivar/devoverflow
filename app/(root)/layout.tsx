@@ -12,7 +12,7 @@ const layout = ({
             <NavBar />
             <div className="flex min-h-full w-screen">
                 <LeftSidebarDesktop />
-                <div className="flex-grow">
+                <div className="flex-grow px-9 mt-8">
                     {children}
                 </div>
                 <RightSidebar />

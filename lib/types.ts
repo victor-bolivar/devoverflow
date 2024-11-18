@@ -1,5 +1,5 @@
 export type TNavLink = {
-    href: `/${string}`
+    href: string
     label: string
     icon: {
         src: string,

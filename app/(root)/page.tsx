@@ -2,6 +2,9 @@ import HomeFilter from '@/components/home/filter';
 import QuestionCard from '@/components/home/question-card';
 import { TQuestion } from '@/lib/types';
 import React from 'react'
+import Link from 'next/link';
+import { ROUTES } from '@/constants';
+import Searchbar from '@/components/searchbar';
 
 //  TODO get from db
 const questions: TQuestion[] = [
@@ -214,10 +217,17 @@ export default async function Page(props: {
     const filter = searchParams?.filter || '';
 
     return (
-        <div className='px-9'>
-            {/* TODO filter the questions based on filters and query */}
-            <h1>{query}</h1>
-            <h2>{filter}</h2>
+        <div className='flex flex-col gap-4'>
+
+            <div className='flex items-center justify-between'>
+                <h1 className='h1'>All Questions</h1>
+                <Link className=' rounded-lg font-semibold text-light-900 py-3 px-6 bg-gradient-to-r from-[#FF7000] via-[#E2985E] to-[#E2995F]' href={ROUTES.ASK_A_QUESTION}>
+                    Ask a Question
+                </Link>
+            </div>
+
+            <Searchbar fullWidth={true} placeholder='Search for questions here...' searchParam='question' />
+
             <HomeFilter />
 
             <div className='flex flex-col gap-5 mt-4'>

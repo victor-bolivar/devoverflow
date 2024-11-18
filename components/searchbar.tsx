@@ -9,9 +9,10 @@ import { useEffect, useRef } from 'react';
 type SearchbarProps = {
     placeholder: string,
     searchParam: string // for example, 'q' for a query or 't' for a tag
+    fullWidth?: boolean
 }
 
-export default function Searchbar({ placeholder, searchParam }: SearchbarProps) {
+export default function Searchbar({ placeholder, searchParam, fullWidth = false }: SearchbarProps) {
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const { replace } = useRouter();
@@ -32,7 +33,7 @@ export default function Searchbar({ placeholder, searchParam }: SearchbarProps) 
     }
 
     return (
-        <div className="flex-1 relative md:max-w-lg max-w-xl">
+        <div className={`flex-1 relative md:max-w-lg  ${fullWidth ? 'w-full' : 'max-w-xl'}`}>
             <Search onClick={handleIconClick} className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
                 ref={inputRef}
