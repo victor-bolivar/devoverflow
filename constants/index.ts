@@ -13,3 +13,6 @@ export const navLinks: TNavLink[] = [
     { href: '/communities', label: 'Communities', icon: { src: '/nav-icons/communities.svg', width: 24, height: 24 } },
     { href: ROUTES.ASK_A_QUESTION, label: 'Ask a Question', icon: { src: '/nav-icons/questions.svg', width: 24, height: 24 } },
 ]
+
+export const MAX_TAGS_PER_QUESTION = 5
+export const MIN_TAGS_PER_QUESTION = 1

@@ -98,4 +98,8 @@
   .input {
     @apply dark:bg-dark-300 !bg-light-800 text-dark-100
   }
+
+  .tag {
+    @apply bg-light-800 shadow-sm dark:bg-dark-300 text-light-400 rounded-md py-3 px-4 text-xs
+  }
 }

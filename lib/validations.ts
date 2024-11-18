@@ -1,4 +1,8 @@
 import { z } from 'zod'
+import {
+    MIN_TAGS_PER_QUESTION,
+    MAX_TAGS_PER_QUESTION
+} from '@/constants'
 
 export const AskAQuestionSchema = z.object({
     title: z
@@ -9,14 +13,10 @@ export const AskAQuestionSchema = z.object({
         .string()
         .min(10, "Minimun 10 characters")
         .max(1000, "Maximun 1000 characters"),
+    tags: z
+        .string()
+        .array()
+        .min(MIN_TAGS_PER_QUESTION, `Must contain at least ${MIN_TAGS_PER_QUESTION} ${MIN_TAGS_PER_QUESTION > 1 ? 'tags' : 'tag'}`)
+        .max(MAX_TAGS_PER_QUESTION, `You can only add up to ${MAX_TAGS_PER_QUESTION} ${MAX_TAGS_PER_QUESTION > 1 ? 'tags' : 'tag'}`)
 
 })
-
-
-
-// TODO add tags logic
-// tags: z.array(z
-//     .string()
-//     .min(3, "Minimun 3 characters")
-//     .max(10, "Maximun 10 characters")
-// )

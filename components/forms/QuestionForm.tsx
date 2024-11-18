@@ -16,6 +16,10 @@ import {
 import { Input } from "@/components/ui/input"
 import { AskAQuestionSchema } from "@/lib/validations"
 import RichTextEditor from '@/components/rich-text-editor'
+import { MAX_TAGS_PER_QUESTION } from "@/constants"
+import Tag from "../tag"
+import { RxCross1 } from "react-icons/rx";
+
 
 export function QuestionForm() {
 
@@ -24,7 +28,8 @@ export function QuestionForm() {
         resolver: zodResolver(AskAQuestionSchema),
         defaultValues: {
             title: "",
-            content: ''
+            content: '',
+            tags: []
         },
     })
 
@@ -35,9 +40,19 @@ export function QuestionForm() {
         console.log(values)
     }
 
+    const handleAddTag = (e: KeyboardEventHandler<HTMLInputElement>) => {
+        console.log(e)
+        if (e.key === 'Enter') {
+            e.preventDefault()
+            form.setValue('tags', [...form.getValues('tags'), e.target.value])
+            e.target.value = ''
+        }
+
+    }
+
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                 <FormField
                     control={form.control}
                     name="title"
@@ -67,11 +82,7 @@ export function QuestionForm() {
                             </FormLabel>
                             <FormControl>
 
-                                <RichTextEditor editorContent={field.value} onChange={value => {
-                                    console.log(value)
-                                    field.onChange({ target: { value } })
-                                    console.log(field.value)
-                                }} />
+                                <RichTextEditor editorContent={field.value} onChange={value => { field.onChange({ target: { value } }) }} />
 
                             </FormControl>
                             <FormDescription>
@@ -81,6 +92,37 @@ export function QuestionForm() {
                         </FormItem>
                     )}
                 />
+
+
+                <FormField
+                    control={form.control}
+                    name="tags"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel className="h3">
+                                Tags <span className="text-orange-strong">*</span>
+                            </FormLabel>
+                            <FormControl>
+
+                                <div>
+                                    <Input className="input" placeholder="" onKeyDown={handleAddTag} />
+                                    <div className="flex flex-wrap gap-2 mt-2">
+                                        {form.getValues('tags').map(tag => <Tag type="delete" label={tag} onClick={() => {
+                                            // remove the tag
+                                            form.setValue('tags', form.getValues('tags').filter(tagElement => tagElement != tag))
+                                        }} />)}
+                                    </div>
+                                </div>
+                            </FormControl>
+                            <FormDescription>
+                                Add up to {MAX_TAGS_PER_QUESTION} tag{MAX_TAGS_PER_QUESTION > 1 && 's'}.
+                            </FormDescription>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+
+
                 <Button type="submit">Submit</Button>
             </form>
         </Form>
