@@ -27,7 +27,7 @@ const RightSidebar = () => {
             </section>
             <section className={sectionStyle}>
                 <h3 className={titleStyle}>Popular tags</h3>
-                {popularTags.map(tag => <Tag {...tag} includeRightArrow={true} />)}
+                {popularTags.map(tag => <Tag type='link' {...tag} includeRightArrow={true} />)}
             </section>
 
         </aside >

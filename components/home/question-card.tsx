@@ -13,7 +13,7 @@ const QuestionCard = ({ question }: QuestionCardProps) => {
         <div className='flex shadow-md dark:shadow-sm dark:shadow-dark-300 flex-col gap-2 py-4 px-7 rounded-md dark:bg-gradient-to-r from-[#171C2368] to-[#13161CB2]'>
             <h3 className='text-xl font-medium'>{question.title}</h3>
             <div className='flex gap-2 '>
-                {question.tags.map(tag => <Tag label={tag.name} href={ROUTES.TAGS(tag._id)} />)}
+                {question.tags.map(tag => <Tag type='link' label={tag.name} href={ROUTES.TAGS(tag._id)} />)}
             </div>
             <div className='flex justify-between'>
                 <div>

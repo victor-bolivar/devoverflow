@@ -41,7 +41,6 @@ export function QuestionForm() {
     }
 
     const handleAddTag = (e: KeyboardEventHandler<HTMLInputElement>) => {
-        console.log(e)
         if (e.key === 'Enter') {
             e.preventDefault()
             form.setValue('tags', [...form.getValues('tags'), e.target.value])
@@ -107,6 +106,7 @@ export function QuestionForm() {
                                 <div>
                                     <Input className="input" placeholder="" onKeyDown={handleAddTag} />
                                     <div className="flex flex-wrap gap-2 mt-2">
+                                        {/* TODO improve this code */}
                                         {form.getValues('tags').map(tag => <Tag type="delete" label={tag} onClick={() => {
                                             // remove the tag
                                             form.setValue('tags', form.getValues('tags').filter(tagElement => tagElement != tag))
