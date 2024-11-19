@@ -5,206 +5,25 @@ import React from 'react'
 import Link from 'next/link';
 import { ROUTES } from '@/constants';
 import Searchbar from '@/components/searchbar';
+import { readQuestions } from '@/lib/db';
+import { CiCircleQuestion } from "react-icons/ci";
+
 
 //  TODO get from db
-const questions: TQuestion[] = [
-    {
-        _id: "1",
-        title: "How to learn React?",
-        description: "I want to learn React, can anyone help me?",
-        tags: [
-            { _id: "1", name: "React" },
-            { _id: "2", name: "JavaScript" },
-        ],
-        author: { _id: "1", name: "John Doe" },
-        upvotes: 10,
-        answers: 5,
-        views: 100,
-        createdAt: new Date(),
-    },
-    {
-        _id: "2",
-        title: "How to learn JavaScript?",
-        description: "I want to learn JavaScript, can anyone help me?",
-        tags: [
-            { _id: "1", name: "JavaScript" },
-            { _id: "2", name: "JavaScript" },
-        ],
-        author: { _id: "1", name: "John Doe" },
-        upvotes: 10,
-        answers: 5,
-        views: 12100,
-        createdAt: new Date(),
-    },
-    {
-        _id: "3",
-        title: "How to learn React?",
-        description: "I want to learn React, can anyone help me?",
-        tags: [
-            { _id: "1", name: "React" },
-            { _id: "2", name: "JavaScript" },
-        ],
-        author: { _id: "1", name: "John Doe" },
-        upvotes: 10,
-        answers: 5,
-        views: 100,
-        createdAt: new Date(),
-    },
-    {
-        _id: "4",
-        title: "How to learn JavaScript?",
-        description: "I want to learn JavaScript, can anyone help me?",
-        tags: [
-            { _id: "1", name: "JavaScript" },
-            { _id: "2", name: "JavaScript" },
-        ],
-        author: { _id: "1", name: "John Doe" },
-        upvotes: 10,
-        answers: 5,
-        views: 12100,
-        createdAt: new Date(),
-    },
-    {
-        _id: "5",
-        title: "How to learn React?",
-        description: "I want to learn React, can anyone help me?",
-        tags: [
-            { _id: "1", name: "React" },
-            { _id: "2", name: "JavaScript" },
-        ],
-        author: { _id: "1", name: "John Doe" },
-        upvotes: 10,
-        answers: 5,
-        views: 100,
-        createdAt: new Date(),
-    },
-    {
-        _id: "6",
-        title: "How to learn JavaScript?",
-        description: "I want to learn JavaScript, can anyone help me?",
-        tags: [
-            { _id: "1", name: "JavaScript" },
-            { _id: "2", name: "JavaScript" },
-        ],
-        author: { _id: "1", name: "John Doe" },
-        upvotes: 10,
-        answers: 5,
-        views: 12100,
-        createdAt: new Date(),
-    },
-    {
-        _id: "7",
-        title: "How to learn React?",
-        description: "I want to learn React, can anyone help me?",
-        tags: [
-            { _id: "1", name: "React" },
-            { _id: "2", name: "JavaScript" },
-        ],
-        author: { _id: "1", name: "John Doe" },
-        upvotes: 10,
-        answers: 5,
-        views: 100,
-        createdAt: new Date(),
-    },
-    {
-        _id: "8",
-        title: "How to learn JavaScript?",
-        description: "I want to learn JavaScript, can anyone help me?",
-        tags: [
-            { _id: "1", name: "JavaScript" },
-            { _id: "2", name: "JavaScript" },
-        ],
-        author: { _id: "1", name: "John Doe" },
-        upvotes: 10,
-        answers: 5,
-        views: 12100,
-        createdAt: new Date(),
-    },
-    {
-        _id: "9",
-        title: "How to learn React?",
-        description: "I want to learn React, can anyone help me?",
-        tags: [
-            { _id: "1", name: "React" },
-            { _id: "2", name: "JavaScript" },
-        ],
-        author: { _id: "1", name: "John Doe" },
-        upvotes: 10,
-        answers: 5,
-        views: 100,
-        createdAt: new Date(),
-    },
-    {
-        _id: "10",
-        title: "How to learn JavaScript?",
-        description: "I want to learn JavaScript, can anyone help me?",
-        tags: [
-            { _id: "1", name: "JavaScript" },
-            { _id: "2", name: "JavaScript" },
-        ],
-        author: { _id: "1", name: "John Doe" },
-        upvotes: 10,
-        answers: 5,
-        views: 12100,
-        createdAt: new Date(),
-    },
-    {
-        _id: "11",
-        title: "How to learn React?",
-        description: "I want to learn React, can anyone help me?",
-        tags: [
-            { _id: "1", name: "React" },
-            { _id: "2", name: "JavaScript" },
-        ],
-        author: { _id: "1", name: "John Doe" },
-        upvotes: 10,
-        answers: 5,
-        views: 100,
-        createdAt: new Date(),
-    },
-    {
-        _id: "12",
-        title: "How to learn JavaScript?",
-        description: "I want to learn JavaScript, can anyone help me?",
-        tags: [
-            { _id: "1", name: "JavaScript" },
-            { _id: "2", name: "JavaScript" },
-        ],
-        author: { _id: "1", name: "John Doe" },
-        upvotes: 10,
-        answers: 5,
-        views: 12100,
-        createdAt: new Date(),
-    },
-    {
-        _id: "13",
-        title: "How to learn React?",
-        description: "I want to learn React, can anyone help me?",
-        tags: [
-            { _id: "1", name: "React" },
-            { _id: "2", name: "JavaScript" },
-        ],
-        author: { _id: "1", name: "John Doe" },
-        upvotes: 10,
-        answers: 5,
-        views: 100,
-        createdAt: new Date(),
-    },
-    {
-        _id: "14",
-        title: "How to learn JavaScript?",
-        description: "I want to learn JavaScript, can anyone help me?",
-        tags: [
-            { _id: "1", name: "JavaScript" },
-            { _id: "2", name: "JavaScript" },
-        ],
-        author: { _id: "1", name: "John Doe" },
-        upvotes: 10,
-        answers: 5,
-        views: 12100,
-        createdAt: new Date(),
-    },
-];
+// {
+//     _id: "1",
+//     title: "How to learn React?",
+//     description: "I want to learn React, can anyone help me?",
+//     tags: [
+//         { _id: "1", name: "React" },
+//         { _id: "2", name: "JavaScript" },
+//     ],
+//     author: { _id: "1", name: "John Doe" },
+//     upvotes: 10,
+//     answers: 5,
+//     views: 100,
+//     createdAt: new Date(),
+// },
 
 export default async function Page(props: {
     searchParams?: Promise<{
@@ -215,6 +34,8 @@ export default async function Page(props: {
     const searchParams = await props.searchParams;
     const query = searchParams?.q || '';
     const filter = searchParams?.filter || '';
+
+    const questions = await readQuestions()
 
     return (
         <div className='flex flex-col gap-4'>
@@ -230,8 +51,18 @@ export default async function Page(props: {
 
             <HomeFilter />
 
-            <div className='flex flex-col gap-5 mt-4'>
-                {questions.map(question => <QuestionCard key={question._id} question={question} />)}
+            <div className='flex flex-col-reverse  gap-5 mt-4'>
+                {
+                    (!questions || questions.length === 0)
+                        ? <div className="flex flex-grow mt-10 flex-col items-center justify-center">
+                            <CiCircleQuestion className='h1' />
+                            <h3 className="h3">No questions found</h3>
+                            <p>Create a question</p>
+                        </div>
+
+                        : questions.map(question => <QuestionCard key={question._id} question={question} />)
+                }
+
             </div>
         </div>
     )

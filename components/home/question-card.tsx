@@ -3,6 +3,7 @@ import Tag from '@/components/tag'
 import React from 'react'
 import { ROUTES } from '@/constants'
 import StatItem from '@/components/stat-item'
+import { getTimeAgo } from '@/lib/utils'
 
 type QuestionCardProps = {
     question: TQuestion
@@ -18,13 +19,14 @@ const QuestionCard = ({ question }: QuestionCardProps) => {
             <div className='flex justify-between'>
                 <div>
                     <p className='dark:text-light-700'>
-                        <span className='font-medium'>{question.author.name} </span>
-                        • asked 2 mins ago
+                        {/* TODO after adding auth */}
+                        {/* <span className='font-medium'>{question.author.name} </span> */}
+                        • asked {getTimeAgo(question.createdAt)}
                     </p>
                 </div>
                 <div className='flex justify-end gap-2'>
                     <StatItem type={'Likes'} value={question.upvotes} />
-                    <StatItem type={'Answers'} value={question.answers} />
+                    <StatItem type={'Answers'} value={question.answers.length} />
                     <StatItem type={'Views'} value={question.views} />
                 </div>
             </div>

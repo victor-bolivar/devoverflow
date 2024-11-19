@@ -19,7 +19,7 @@ import RichTextEditor from '@/components/rich-text-editor'
 import { MAX_TAGS_PER_QUESTION } from "@/constants"
 import Tag from "../tag"
 import { RxCross1 } from "react-icons/rx";
-
+import { postNewQuestion } from "@/actions/questions"
 
 export function QuestionForm() {
 
@@ -34,10 +34,8 @@ export function QuestionForm() {
     })
 
     // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof AskAQuestionSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        console.log(values)
+    async function onSubmit(values: z.infer<typeof AskAQuestionSchema>) {
+        await postNewQuestion(values)
     }
 
     const handleAddTag = (e: KeyboardEventHandler<HTMLInputElement>) => {

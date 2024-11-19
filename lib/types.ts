@@ -18,14 +18,20 @@ export type TAuthor = {
     name: string
 }
 
+export type TAnswer = {
+    _id: string
+}
+
 export type TQuestion = {
     _id: string,
     title: string,
-    description: string,
+    content: string,
     tags: TTag[],
     author: TAuthor,
     upvotes: number,
-    answers: number,
+    downvotes: number,
+    answers: TAnswer[],
     views: number,
-    createdAt: Date
+    createdAt: Date,
+    updatedAt: Date
 }
