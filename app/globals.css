@@ -87,6 +87,10 @@
 }
 
 @layer components {
+  .h1-light {
+    @apply text-2xl text-dark-100 dark:text-light-900
+  }
+
   .h1 {
     @apply text-2xl text-dark-100 dark:text-light-900 font-semibold
   }
@@ -95,11 +99,27 @@
     @apply text-lg text-dark-400 dark:text-light-900
   }
 
+  .p {
+    @apply dark:text-light-400 text-dark-500
+  }
+
+  .bg-300 {
+    @apply bg-light-800 shadow-sm dark:bg-dark-300
+  }
+
   .input {
     @apply dark:bg-dark-300 !bg-light-800 text-dark-100
   }
 
   .tag {
     @apply bg-light-800 shadow-sm dark:bg-dark-300 text-light-400 rounded-md py-3 px-4 text-xs
+  }
+
+  .primary-gradient {
+    @apply bg-gradient-to-r from-[#FF7000] to-[#E2995F]
+  }
+
+  .paragraph-light {
+    @apply dark:text-light-700 dark:font-normal tracking-wider text-dark-400
   }
 }

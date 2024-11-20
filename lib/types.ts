@@ -17,6 +17,16 @@ export type TAuthor = {
     _id: string,
     name: string
 }
+// TODO use TUser instead of TAuthor
+export interface TUser {
+    _id: string;
+    username: string;
+    email: string;
+    password: string;
+    // TODO add image image: string;
+    createdAt: Date;
+    updatedAt: Date;
+}
 
 export type TAnswer = {
     _id: string

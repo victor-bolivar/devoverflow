@@ -5,6 +5,11 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export function capitalizeFirstLetter(str: string) {
+  if (!str) return ''; // Handle empty strings
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 export function getTimeAgo(date: Date) {
   const now = new Date();
   const diffMs = now - date; // Difference in milliseconds

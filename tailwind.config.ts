@@ -29,7 +29,7 @@ export default {
 					'800': '#f4f6f8',
 					'700': '#dce3f1',
 					'500': '#7b8ec8',
-					'400': '#858ead'
+					'400': '#858ead',
 				},
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',

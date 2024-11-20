@@ -16,3 +16,8 @@ export const navLinks: TNavLink[] = [
 
 export const MAX_TAGS_PER_QUESTION = 5
 export const MIN_TAGS_PER_QUESTION = 1
+
+export const MIN_USERNAME_CHARACTERS = 3
+export const MAX_USERNAME_CHARACTERS = 20
+export const MIN_PASSWORD_CHARACTERS = 3
+export const MAX_PASSWORD_CHARACTERS = 100

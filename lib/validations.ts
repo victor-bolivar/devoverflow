@@ -1,7 +1,11 @@
 import { z } from 'zod'
 import {
     MIN_TAGS_PER_QUESTION,
-    MAX_TAGS_PER_QUESTION
+    MAX_TAGS_PER_QUESTION,
+    MIN_PASSWORD_CHARACTERS,
+    MAX_PASSWORD_CHARACTERS,
+    MIN_USERNAME_CHARACTERS,
+    MAX_USERNAME_CHARACTERS
 } from '@/constants'
 
 export const AskAQuestionSchema = z.object({
@@ -20,3 +24,25 @@ export const AskAQuestionSchema = z.object({
         .max(MAX_TAGS_PER_QUESTION, `You can only add up to ${MAX_TAGS_PER_QUESTION} ${MAX_TAGS_PER_QUESTION > 1 ? 'tags' : 'tag'}`)
 
 })
+
+export const SignInSchema = z.object({
+    email: z.string().email("Invalid email address").nonempty("Email is required"),
+    password: z
+        .string()
+        .min(MIN_PASSWORD_CHARACTERS, `Password must be at least ${MIN_PASSWORD_CHARACTERS} characters long`)
+        .max(MAX_PASSWORD_CHARACTERS, `Password must be less than ${MAX_PASSWORD_CHARACTERS} characters`)
+        .nonempty("Password is required"),
+});
+
+export const SignUpSchema = z.object({
+    username: z
+        .string()
+        .min(MIN_USERNAME_CHARACTERS, `Username must be at least ${MIN_USERNAME_CHARACTERS} characters long`)
+        .max(MAX_USERNAME_CHARACTERS, `Username must be less than ${MAX_USERNAME_CHARACTERS} characters`)
+        .nonempty("Username is required"),
+    email: z.string().email("Invalid email address"),
+    password: z
+        .string()
+        .min(MIN_PASSWORD_CHARACTERS, `Password must be at least ${MIN_PASSWORD_CHARACTERS} characters long`)
+        .max(MAX_PASSWORD_CHARACTERS, `Password must be less than ${MAX_PASSWORD_CHARACTERS} characters`),
+});

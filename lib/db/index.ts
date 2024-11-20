@@ -2,6 +2,54 @@ import { TQuestion, TTag } from "../types"
 import connectDB from "./connectDB"
 import Question from "./models/Question"
 import Tag from "./models/Tag"
+import User from './models/user.model'
+import bcrypt from "bcryptjs";
+
+
+// Auth
+
+export async function authorize(credentials) {
+    await connectDB();
+    const user = await User.findOne({
+        email: credentials?.email,
+    }).select("+password");
+
+    if (!user) throw new Error("Wrong Email");
+
+    const passwordMatch = await bcrypt.compare(
+        credentials!.password,
+        user.password
+    );
+
+    if (!passwordMatch) throw new Error("Wrong Password");
+    return user;
+}
+
+export async function createUserInDatabase(username: string, email: string, password: string) {
+
+    try {
+        await connectDB();
+        const userFound = await User.findOne({ email });
+        if (userFound) {
+            return {
+                error: 'Email already exists!'
+            }
+        }
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const user = new User({
+            username,
+            email,
+            password: hashedPassword,
+        });
+        const savedUser = await user.save();
+
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+
+// Questions
 
 export const createQuestion = async (title: string, content: string, tagNames: [string]) => {
     try {
